@@ -1,12 +1,11 @@
 class YoutubeService
   def self.search(query_keywords)
-    url = 'search'
+    url = '/search'
     params = {
-      part: 'snippet',
+      part: "snippet",
       maxResults: 1,
-      videoEmbeddable: true,
       q: query_keywords,
-      channel_id: UCluQ5yInbeAkkeCndNnUhpw
+      channelId: "UCluQ5yInbeAkkeCndNnUhpw"
     }
 
     response = call_api(url, params)
@@ -28,21 +27,19 @@ class YoutubeService
     Faraday.new('https://www.googleapis.com/youtube/v3')
   end
 
-  # def self.parse_response(response)
-
-  #   if response.key?(:error)
-  #     error_message = response[:error][:message]
-  #     raise StandardError, "YouTube API error: #{error_message}"
-  #   else
-  #     items = response[:items] || []
-  #     items.map do |item|
-  #       YoutubeVideo.new(
-  #         id: { videoId: item[:id][:videoId] },
-  #         snippet: item[:snippet],
-  #         title: item[:snippet][:title],
-  #         url: "https://www.youtube.com/watch?v=#{item[:id][:videoId]}",
-  #       )
-  #     end
-  #   end
-  # end
+  def self.parse_response(response)
+    if response.key?(:error)
+      error_message = response[:error][:message]
+      raise StandardError, "YouTube API error: #{error_message}"
+    else
+      items = response[:items] || []
+      items.map do |item|
+        {
+          id: item[:id][:videoId],
+          title: item[:snippet][:title],
+          url: "https://www.youtube.com/watch?v=#{item[:id][:videoId]}"
+        }
+      end
+    end
+  end
 end

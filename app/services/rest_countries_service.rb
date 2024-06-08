@@ -1,26 +1,21 @@
 class RestCountriesService
   
   def self.country_search(country_name)
-    url = 'name'
-    params = {q: country_name}
+    url = "/name/#{country_name}"
 
-    response = call_api(url, params)
+    response = call_api(url)
     # parse_response(response)
+    response
   end
 
   private
 
-  def self.call_api(url, params = {})
-    response = connection.get(url) do |request|
-      request.params = params
-      # req.headers['Content-Type'] = 'application/json'
-  end
-
+  def self.call_api(url)
+    response = connection.get(url)
     JSON.parse(response.body, symbolize_names: true)
   end
 
   def self.connection
-    Faraday.new('https://restcountries.com')
+    Faraday.new('https://restcountries.com/v3.1')
   end
-
 end

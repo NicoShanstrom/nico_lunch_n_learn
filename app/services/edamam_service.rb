@@ -1,11 +1,15 @@
 class EdamamService
   
   def self.recipe_search(country_name)
-    url = 'recpies'
-    params = {q: country_name}
+    url = '/api/recipes/v2'
+    params = {
+      type: 'public',
+      q: country_name
+    }
 
     response = call_api(url, params)
     # parse_response(response)
+    response
   end
 
   private
