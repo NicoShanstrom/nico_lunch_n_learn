@@ -7,7 +7,11 @@ class RestCountriesService
     # parse_response(response)
     response
   end
-
+  
+  def self.random_country
+    COUNTRIES.sample
+  end
+  
   private
 
   def self.call_api(url)
