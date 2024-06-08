@@ -8,8 +8,8 @@ class Api::V1::RecipesController < ApplicationController
 
     recipes = EdamamService.recipe_search(country_name)
     formatted_recipes = format_recipes(recipes, country_name)
-    # require 'pry'; binding.pry
     render json: RecipeSerializer.new(formatted_recipes).serializable_hash
+    # require 'pry'; binding.pry
   end
 
   private

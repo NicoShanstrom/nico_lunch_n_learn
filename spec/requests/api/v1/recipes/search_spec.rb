@@ -24,12 +24,21 @@ RSpec.describe "Recipes API", type: :request do
 
     describe "when country parameter is not provided" do
       it 'returns recipes for a random country', :vcr do
+        allow(RestCountriesService).to receive(:random_country).and_return('India')
         get "/api/v1/recipes"
 
         expect(response).to have_http_status(:success)
 
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response).to have_key(:data)
+        recipe = json_response[:data].first
+        
+        expect(recipe[:id]).to be_nil
+        expect(recipe[:type]).to eq('recipe')
+        expect(recipe[:attributes]).to have_key(:title)
+        expect(recipe[:attributes]).to have_key(:url)
+        expect(recipe[:attributes]).to have_key(:country)
+        expect(recipe[:attributes]).to have_key(:image)
       end
     end
 
