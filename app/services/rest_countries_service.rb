@@ -1,17 +1,18 @@
 class RestCountriesService
   
   def self.country_search(country_name)
-    url = "/name/#{country_name}"
+    url = "/v3.1/name/#{country_name}"
 
     response = call_api(url)
-    response
+    response.first[:name][:common]
     # parse_response(response)
   end
   
   def self.random_country
     # COUNTRIES.sample
     countries = all_countries
-    countries.sample[:name][:common]
+    # require 'pry'; binding.pry
+    countries.sample
   end
   
   private
@@ -22,12 +23,12 @@ class RestCountriesService
   end
 
   def self.connection
-    Faraday.new('https://restcountries.com/v3.1')
+    Faraday.new('https://restcountries.com')
   end
 
   def self.all_countries
-    url = "/all"
+    url = "/v3.1/all"
     response = call_api(url)
-    response
+    response.map { |country| country[:name][:common] }
   end
 end

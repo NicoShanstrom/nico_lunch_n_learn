@@ -1,11 +1,11 @@
 class User < ApplicationRecord
   has_secure_password
 
-  before_create :create_unique_api_key
+  before_validation :create_unique_api_key, on: :create
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :password, presence: true, confirmation: true
   validates :api_key, presence: true
 
   private
@@ -15,5 +15,6 @@ class User < ApplicationRecord
       self.api_key = SecureRandom.hex(24)
       break unless self.class.exists?(api_key: api_key)
     end
+    # require 'pry'; binding.pry
   end
 end

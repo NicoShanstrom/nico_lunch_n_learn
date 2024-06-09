@@ -6,22 +6,22 @@ RSpec.describe "Users API", type: :request do
       it "creates a new user and returns an API key" do
         post "/api/v1/users",
           params: {
-              name: "Odell",
-              email: "goodboy@ruffruff.com",
-              password: "treats4lyf",
-              password_confirmation: "treats4lyf"
+            name: "Odell",
+            email: "badboy@ruffruff.com",
+            password: "treats4lyf",
+            password_confirmation: "treats4lyf"
           }.to_json,
           headers: { 
-          "Content-Type" => "application/json",
-          "Accept" => "applicationjson"
+            "Content-Type" => "application/json",
+            "Accept" => "application/json"
           }
-
+          # require 'pry'; binding.pry
         expect(response).to have_http_status(:created)
-        json_response = JSON.parse(respoonse.body, symbolize_names: true)
+        json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response[:data]).to have_key(:id)
         expect(json_response[:data][:attributes]).to include(
           name: "Odell",
-          email: "googboy@ruffruff.com"
+          email: "badboy@ruffruff.com",
           api_key: anything
         )
       end
@@ -31,20 +31,21 @@ RSpec.describe "Users API", type: :request do
       it "returns an error when email is not unique" do
         User.create(
           name: "Odell", 
-          email: "goodboy@ruffruff.com", 
+          email: "badboy@ruffruff.com", 
           password: "password", 
-          password_confirmation: "password")
+          password_confirmation: "password"
+        )
 
         post "/api/v1/users", 
           params: {
             name: "Odell",
-            email: "goodboy@ruffruff.com",
+            email: "badboy@ruffruff.com",
             password: "treats4lyf",
             password_confirmation: "treats4lyf"
           }.to_json,
           headers: { 
             "Content-Type" => "application/json",
-            "Accept" => "applicationjson"
+            "Accept" => "application/json"
           }
         
         expect(response).to have_http_status(:unprocessable_entity)
@@ -56,15 +57,15 @@ RSpec.describe "Users API", type: :request do
         post "/api/v1/users", 
           params: {
             name: "Odell",
-            email: "goodboy@ruffruff.com",
+            email: "badboy@ruffruff.com",
             password: "treats4lyf",
             password_confirmation: "treats4lyfe"
           }.to_json,
           headers: { 
             "Content-Type" => "application/json",
-            "Accept" => "applicationjson"
+            "Accept" => "application/json"
           }
-          
+
         expect(response).to have_http_status(:unprocessable_entity)
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response[:errors]).to include("Password confirmation doesn't match Password")
