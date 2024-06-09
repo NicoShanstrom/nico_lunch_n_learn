@@ -6,20 +6,19 @@ RSpec.describe EdamamService, type: :service do
       country_name = 'thailand'
       response = EdamamService.recipe_search(country_name)
       # require 'pry'; binding.pry
-      expect(response).to be_a(Hash)
-      expect(response).to have_key(:hits)
-
-      first_recipe = response[:hits].first[:recipe]
-      expect(first_recipe).to have_key(:label)
-      expect(first_recipe).to have_key(:url)
-      expect(first_recipe).to have_key(:image)
+      expect(response).to be_an(Array)
+      expect(response.first).to be_a(Recipe)
+      expect(response.first.title).to be_present
+      expect(response.first.url).to be_present
+      expect(response.first.country).to eq(country_name)
+      expect(response.first.image).to be_present
     end
 
     it 'returns an empty array if no recipes are found' do
       country_name = 'nonexistentcountry'
       response = EdamamService.recipe_search(country_name)
 
-      expect(response[:hits]).to be_empty
+      expect(response).to be_empty
     end
   end
 end

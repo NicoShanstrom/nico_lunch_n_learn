@@ -11,6 +11,9 @@ RSpec.describe "Recipes API", type: :request do
 
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response).to have_key(:data)
+        expect(json_response[:data]).to be_an(Array)
+
+        expect(json_response[:data]).to be_an(Array)
 
         recipe = json_response[:data].first
         expect(recipe[:id]).to be_nil
@@ -19,7 +22,6 @@ RSpec.describe "Recipes API", type: :request do
         expect(recipe[:attributes]).to have_key(:url)
         expect(recipe[:attributes]).to have_key(:country)
         expect(recipe[:attributes]).to have_key(:image)
-        expect(recipe[:attributes]).to_not have_key(:images)
         expect(recipe[:attributes]).to_not have_key(:images)
         expect(recipe[:attributes]).to_not have_key(:source)
         expect(recipe[:attributes]).to_not have_key(:dietLabels)
