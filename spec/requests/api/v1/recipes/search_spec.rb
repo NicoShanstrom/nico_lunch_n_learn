@@ -19,6 +19,10 @@ RSpec.describe "Recipes API", type: :request do
         expect(recipe[:attributes]).to have_key(:url)
         expect(recipe[:attributes]).to have_key(:country)
         expect(recipe[:attributes]).to have_key(:image)
+        expect(recipe[:attributes]).to_not have_key(:images)
+        expect(recipe[:attributes]).to_not have_key(:images)
+        expect(recipe[:attributes]).to_not have_key(:source)
+        expect(recipe[:attributes]).to_not have_key(:dietLabels)
       end
     end
 
@@ -32,7 +36,7 @@ RSpec.describe "Recipes API", type: :request do
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response).to have_key(:data)
         recipe = json_response[:data].first
-        
+
         expect(recipe[:id]).to be_nil
         expect(recipe[:type]).to eq('recipe')
         expect(recipe[:attributes]).to have_key(:title)
