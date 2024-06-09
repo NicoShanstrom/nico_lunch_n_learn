@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :learning_resources, only: [:index]
       # post 'favorites', to: 'favorites#create'
       resources :favorites, only: [:create]
+      resources :users, only: [:create]
     end
   end
   # Defines the root path route ("/")
