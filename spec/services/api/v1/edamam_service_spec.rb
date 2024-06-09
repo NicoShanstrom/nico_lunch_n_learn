@@ -5,7 +5,7 @@ RSpec.describe EdamamService, type: :service do
     it 'can find recipes for a specific country' do
       country_name = 'thailand'
       response = EdamamService.recipe_search(country_name)
-
+      # require 'pry'; binding.pry
       expect(response).to be_a(Hash)
       expect(response).to have_key(:hits)
 

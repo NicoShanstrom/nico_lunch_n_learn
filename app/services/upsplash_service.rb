@@ -1,10 +1,10 @@
 class UpsplashService
 
   def self.photo_search(country_name)
-     url = '/search/photos'
+    url = '/search/photos'
     params = { query: country_name }
     response = call_api(url, params)
-    response
+    parse_response(response)
     # require 'pry'; binding.pry
   end
   private
@@ -21,5 +21,14 @@ class UpsplashService
 
   def self.connection
     Faraday.new('https://api.unsplash.com')
+  end
+
+  def self.parse_response(response)
+    response[:results].map do |image|
+      {
+        alt_tag: image[:alt_description],
+        url: image[:urls][:regular]
+      }
+    end
   end
 end

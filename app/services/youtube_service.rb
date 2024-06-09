@@ -28,16 +28,14 @@ class YoutubeService
   end
 
   def self.parse_response(response)
-    if response.key?(:error)
-      error_message = response[:error][:message]
-      raise StandardError, "YouTube API error: #{error_message}"
-    else
-      item = response[:items].first
+    item = response[:items]&.first
+    if item
       {
         title: item[:snippet][:title],
         youtube_video_id: item[:id][:videoId]
-        # url: "https://www.youtube.com/watch?v=#{item[:id][:videoId]}"
       }
+    else
+      {}
     end
   end
 end

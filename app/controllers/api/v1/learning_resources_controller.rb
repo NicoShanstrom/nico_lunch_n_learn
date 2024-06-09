@@ -7,15 +7,10 @@ class Api::V1::LearningResourcesController < ApplicationController
     end
 
     video = YoutubeService.search(country_name)
-    images = UpsplashService.photo_search(country_name)[:results].map do |image|
-      {
-        alt_tag: image[:alt_description],
-        url: image[:urls][:regular]
-      }
-    end
-
-    learning_resource = learning_resource = LearningResource.new(country_name, video || {}, images || [])
-
+    images = UpsplashService.photo_search(country_name)
+    
+    learning_resource = LearningResource.new(country_name, video || {}, images || [])
+    # require 'pry'; binding.pry
     render json: LearningResourceSerializer.new(learning_resource).serializable_hash
   end
 end

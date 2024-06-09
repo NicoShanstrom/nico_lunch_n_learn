@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.unsplash.com/search/photos?client_id=tNUV-QpT1-yfyTeQ-PmaieeNRoovUtH13KH7LQGOBzA&query=invalidcountryname
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.1
+      Accept-Version:
+      - v1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '40'
+      Server:
+      - Cowboy
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1717899268&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&s=E3GUuxoCufnX7IZ3YFTpWpDyieU7Y0dSenm9z4GzG00%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1717899268&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&s=E3GUuxoCufnX7IZ3YFTpWpDyieU7Y0dSenm9z4GzG00%3D
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Content-Type:
+      - application/json
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Request-Method:
+      - "*"
+      Access-Control-Allow-Headers:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Link,X-Total,X-Per-Page,X-RateLimit-Limit,X-RateLimit-Remaining
+      Cache-Control:
+      - max-age=86400,stale-if-error=3600,stale-while-revalidate=60
+      X-Unsplash-Version:
+      - v1
+      Warning:
+      - The tags property in this endpoint is deprecated. https://changelog.unsplash.com/deprecations/2021/07/12/tags-search-deprecation.html
+      X-Total:
+      - '0'
+      X-Per-Page:
+      - '10'
+      X-Powered-By:
+      - hero-app
+      X-Version:
+      - 2db2c6bf6922786949f6ff8ed55d28f997dd7c0b
+      Content-Language:
+      - en
+      Etag:
+      - W/"7814e74bfa62dcc505522924e3c8cf4b"
+      X-Ratelimit-Limit:
+      - '50'
+      X-Ratelimit-Remaining:
+      - '49'
+      X-Request-Id:
+      - 05de777d-b775-4468-8456-4faaf9873ddb
+      X-Runtime:
+      - '0.072145'
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Via:
+      - 1.1 vegur, 1.1 varnish, 1.1 varnish
+      Accept-Ranges:
+      - bytes
+      Age:
+      - '0'
+      Date:
+      - Sun, 09 Jun 2024 02:14:29 GMT
+      X-Served-By:
+      - cache-iad-kjyo7100073-IAD, cache-pdk-kpdk1780104-PDK
+      X-Cache:
+      - MISS, MISS
+      X-Cache-Hits:
+      - 0, 0
+      X-Timer:
+      - S1717899269.952703,VS0,VE100
+      Vary:
+      - Accept-Encoding,Authorization,Accept-Language,client-geo-region,Accept
+    body:
+      encoding: ASCII-8BIT
+      string: '{"total":0,"total_pages":0,"results":[]}'
+  recorded_at: Sun, 09 Jun 2024 02:14:29 GMT
+recorded_with: VCR 6.2.0

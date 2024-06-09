@@ -8,7 +8,7 @@ class EdamamService
     }
 
     response = call_api(url, params)
-    response
+    parse_response(response, country_name)
   end
 
   private
