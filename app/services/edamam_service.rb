@@ -9,6 +9,7 @@ class EdamamService
 
     response = call_api(url, params)
     parse_response(response, country_name)
+    # require 'pry'; binding.pry
   end
 
   private
