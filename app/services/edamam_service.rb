@@ -8,9 +8,7 @@ class EdamamService
     }
 
     response = call_api(url, params)
-    # parse_response(response)
     response
-    # require 'pry'; binding.pry
   end
 
   private

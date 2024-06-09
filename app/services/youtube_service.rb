@@ -1,6 +1,6 @@
 class YoutubeService
   def self.search(query_keywords)
-    url = '/search'
+    url = 'search'
     params = {
       part: "snippet",
       maxResults: 1,
@@ -9,7 +9,7 @@ class YoutubeService
     }
 
     response = call_api(url, params)
-    # parse_response(response)
+    parse_response(response)
   end
 
   private
@@ -32,14 +32,12 @@ class YoutubeService
       error_message = response[:error][:message]
       raise StandardError, "YouTube API error: #{error_message}"
     else
-      items = response[:items] || []
-      items.map do |item|
-        {
-          id: item[:id][:videoId],
-          title: item[:snippet][:title],
-          url: "https://www.youtube.com/watch?v=#{item[:id][:videoId]}"
-        }
-      end
+      item = response[:items].first
+      {
+        title: item[:snippet][:title],
+        youtube_video_id: item[:id][:videoId]
+        # url: "https://www.youtube.com/watch?v=#{item[:id][:videoId]}"
+      }
     end
   end
 end
