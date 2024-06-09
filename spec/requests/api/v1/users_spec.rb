@@ -22,7 +22,7 @@ RSpec.describe "Users API", type: :request do
         expect(json_response[:data][:attributes]).to include(
           name: "Odell",
           email: "badboy@ruffruff.com",
-          api_key: anything
+          api_key: anything #RSpec matcher to specify that a particular key in a hash should exist and its value can be anything
         )
       end
     end
