@@ -14,15 +14,7 @@ class Api::V1::LearningResourcesController < ApplicationController
       }
     end
 
-    learning_resource = {
-      id: nil,
-      type: "learning_resource",
-      attributes: {
-        country: country_name,
-        video: video || {},
-        images: images || []
-      }
-    }
+    learning_resource = learning_resource = LearningResource.new(country_name, video || {}, images || [])
 
     render json: LearningResourceSerializer.new(learning_resource).serializable_hash
   end
