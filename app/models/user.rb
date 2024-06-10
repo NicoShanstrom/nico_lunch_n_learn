@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :favorites, dependent: :destroy
+  
   before_validation :create_unique_api_key, on: :create
 
   validates :name, presence: true
