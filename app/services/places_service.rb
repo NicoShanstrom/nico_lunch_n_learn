@@ -26,8 +26,8 @@ class PlacesService
     }
 
     response = call_api(url, params)
-    coordinates = response[:features]&.first&.dig(:geometry, :coordinates)
-    return { lat: coordinates[1], lon: coordinates[0] } if coordinates
+    coordinates = response[:results]&.first
+    return { lat: coordinates[:lat], lon: coordinates[:lon] } if coordinates
 
     nil
   end
@@ -52,9 +52,9 @@ class PlacesService
           id: nil,
           type: 'tourist_site',
           attributes: {
-            name: site[:properties][:name],
-            address: site[:properties][:formatted],
-            place_id: site[:properties][:place_id]
+            name: tourist_site[:properties][:name],
+            address: tourist_site[:properties][:formatted],
+            place_id: tourist_site[:properties][:place_id]
           }
         }
       end
