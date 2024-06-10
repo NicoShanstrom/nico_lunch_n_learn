@@ -4,21 +4,7 @@ class PlacesService
     coordinates = geocode_country(country_name)
     return [] unless coordinates
     
-    url = '/v2/places'
-    params = {
-      categories: "tourism",
-      filter: "circle:#{coordinates[:lon]},#{coordinates[:lat]},50000",
-      limit: 10
-    }
-
-    response = call_api(url, params)
-    response[:features].map do |tourist_site|
-      TouristSite.new(
-        name: tourist_site[:properties][:name],
-        address: tourist_site[:properties][:formatted],
-        place_id: tourist_site[:properties][:place_id]
-      )
-    end
+    search_tourist_sites(coordinates)
   end
 
   private
@@ -35,6 +21,24 @@ class PlacesService
     return { lat: coordinates[:lat], lon: coordinates[:lon] } if coordinates
 
     nil
+  end
+
+  def self.search_tourist_sites(coordinates)
+    url = '/v2/places'
+    params = {
+      categories: 'tourism',
+      filter: "circle:#{coordinates[:lon]},#{coordinates[:lat]},50000",
+      limit: 10
+    }
+
+    response = call_api(url, params)
+    response[:features].map do |site|
+      TouristSite.new(
+        name: site[:properties][:name],
+        address: site[:properties][:formatted],
+        place_id: site[:properties][:place_id]
+      )
+    end
   end
 
   def self.call_api(url, params = {})
