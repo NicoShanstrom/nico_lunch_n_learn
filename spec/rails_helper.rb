@@ -86,6 +86,7 @@ VCR.configure do |config|
   config.filter_sensitive_data('<EDAMAM_API_KEY>') { Rails.application.credentials.EDAMAM[:APP_KEY] }
   config.filter_sensitive_data('<YOUTUBE_API_KEY>') { Rails.application.credentials.YOUTUBE[:API_KEY] }
   config.filter_sensitive_data('<UPSPLASH_CLIENT_ID>') { Rails.application.credentials.UPSPLASH[:ACCESS_KEY] }
+  config.filter_sensitive_data('<PLACES_API_KEY>') { Rails.application.credentials.GEOAPIFY[:API_KEY] }
   config.configure_rspec_metadata!
   config.allow_http_connections_when_no_cassette = true
 end
