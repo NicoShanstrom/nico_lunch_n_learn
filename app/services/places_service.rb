@@ -4,7 +4,6 @@ class PlacesService
     coordinates = geocode_country(country_name)
     return [] unless coordinates
     
-    # url = '/v1/geocode/search'
     url = '/v2/places'
     params = {
       categories: "tourism",
@@ -13,7 +12,14 @@ class PlacesService
     }
 
     response = call_api(url, params)
-    parse_response(response)
+    # parse_response(response)
+    response[:features].map do |tourist_site|
+      {
+        name: tourist_site[:properties][:name],
+        address: tourist_site[:properties][:formatted],
+        place_id: tourist_site[:properties][:place_id]
+      }
+    end
   end
 
   private
@@ -45,19 +51,19 @@ class PlacesService
     Faraday.new('https://api.geoapify.com')
   end
 
-  def self.parse_response(response)
-    {
-      data: response[:features].map do |tourist_site|
-        {
-          id: nil,
-          type: 'tourist_site',
-          attributes: {
-            name: tourist_site[:properties][:name],
-            address: tourist_site[:properties][:formatted],
-            place_id: tourist_site[:properties][:place_id]
-          }
-        }
-      end
-    }
-  end
+  # def self.parse_response(response)
+  #   {
+  #     data: response[:features].map do |tourist_site|
+  #       {
+  #         id: nil,
+  #         type: 'tourist_site',
+  #         attributes: {
+  #           name: tourist_site[:properties][:name],
+  #           address: tourist_site[:properties][:formatted],
+  #           place_id: tourist_site[:properties][:place_id]
+  #         }
+  #       }
+  #     end
+  #   }
+  # end
 end
