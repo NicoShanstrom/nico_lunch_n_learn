@@ -47,7 +47,7 @@ class PlacesService
 
   def self.parse_response(response)
     {
-      data: response[:features].map do |site|
+      data: response[:features].map do |tourist_site|
         {
           id: nil,
           type: 'tourist_site',
