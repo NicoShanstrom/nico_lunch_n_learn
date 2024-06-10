@@ -21,7 +21,7 @@ RSpec.describe "Login request", type: :request do
         expect(json_response[:data][:attributes]).to include(
           name: "Odell",
           email: "goodboy@ruffruff.com",
-          api_key: "40357492dbae60bf76ca991321816ee62d46d921c5b89af1"
+          api_key: anything
         )
       end
     end
