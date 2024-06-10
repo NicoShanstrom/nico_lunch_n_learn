@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-06-09T21:19:37-04:00">2024-06-09T21:19:37-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-06-10T15:30:38-04:00">2024-06-10T15:30:38-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -39,7 +39,7 @@
   <a name="AllFiles"></a>
 
   <div>
-    <b>32</b> files in total.
+    <b>33</b> files in total.
   </div>
 
   <div class="t-line-summary">
@@ -342,6 +342,17 @@
             <td class="cell--number">9</td>
             <td class="cell--number">0</td>
             <td class="cell--number">1.00</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#3bbfbbab0696a29bf49a834f99f8ab77d08af919" class="src_link" title="spec/requests/api/v1/favorites_spec.rb">spec/requests/api/v1/favorites_spec.rb</a></td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">29</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
@@ -6101,6 +6112,356 @@
             
 
             <code class="ruby">end</code>
+          </li>
+        </div>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="3bbfbbab0696a29bf49a834f99f8ab77d08af919">
+  <div class="header">
+    <h3>spec/requests/api/v1/favorites_spec.rb</h3>
+    <h4>
+      <span class="green">
+  100.0%
+</span>
+
+      lines covered
+    </h4>
+
+    
+
+    <div class="t-line-summary">
+      <b>0</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+
+    
+
+  </div>
+
+  <pre>
+    <ol>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="1">
+            
+            
+
+            
+
+            <code class="ruby">equire &#39;rails_helper&#39;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="2">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="3">
+            
+            
+
+            
+
+            <code class="ruby">RSpec.describe &quot;Favorite request&quot;, type: :request do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="4">
+            
+            
+
+            
+
+            <code class="ruby">  describe &quot;POST /api/v1/favorites&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="5">
+            
+            
+
+            
+
+            <code class="ruby">    describe &quot;successful login request&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="6">
+            
+            
+
+            
+
+            <code class="ruby">      it &quot;creates a favorite recipe for a user&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="7">
+            
+            
+
+            
+
+            <code class="ruby">        post &quot;/api/v1/favorites&quot;, </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="8">
+            
+            
+
+            
+
+            <code class="ruby">          params: {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="9">
+            
+            
+
+            
+
+            <code class="ruby">            api_key: &quot;a user in the database&#39;s api key&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="10">
+            
+            
+
+            
+
+            <code class="ruby">            country: &quot;thailand&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="11">
+            
+            
+
+            
+
+            <code class="ruby">            recipe_link: &quot;a link from thailand recipe response&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="12">
+            
+            
+
+            
+
+            <code class="ruby">            recipe_title: &quot; a title of a recipe from thailad recipe response&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="13">
+            
+            
+
+            
+
+            <code class="ruby">          }.to_json,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="14">
+            
+            
+
+            
+
+            <code class="ruby">          headers: {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="15">
+            
+            
+
+            
+
+            <code class="ruby">            &quot;Content-Type&quot; =&gt; &quot;application/json&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="16">
+            
+            
+
+            
+
+            <code class="ruby">            &quot;Accept&quot; =&gt; &quot;application/json&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="17">
+            
+            
+
+            
+
+            <code class="ruby">          }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="18">
+            
+            
+
+            
+
+            <code class="ruby">          expect(response).to have_http_status(:success)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="19">
+            
+            
+
+            
+
+            <code class="ruby">          json_response = JSON.parse(response.body, symbolize_names: true)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="20">
+            
+            
+
+            
+
+            <code class="ruby">          # require &#39;pry&#39;; binding.pry</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="21">
+            
+            
+
+            
+
+            <code class="ruby">        expect(json_response[:data]).to have_key(:id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="22">
+            
+            
+
+            
+
+            <code class="ruby">        expect(json_response[:data][:type]).to eq(&quot;user&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="23">
+            
+            
+
+            
+
+            <code class="ruby">        expect(json_response[:data][:attributes]).to include(</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="24">
+            
+            
+
+            
+
+            <code class="ruby">          name: &quot;Odell&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="25">
+            
+            
+
+            
+
+            <code class="ruby">          email: &quot;goodboy@ruffruff.com&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="26">
+            
+            
+
+            
+
+            <code class="ruby">          api_key: &quot;40357492dbae60bf76ca991321816ee62d46d921c5b89af1&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="27">
+            
+            
+
+            
+
+            <code class="ruby">        )</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="28">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="29">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
           </li>
         </div>
       
