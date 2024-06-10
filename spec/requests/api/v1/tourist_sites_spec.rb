@@ -24,7 +24,7 @@ RSpec.describe 'TouristSites API', type: :request do
     describe 'without a country parameter' do
       it 'returns an error' do
         get '/api/v1/tourist_sites'
-        # require 'pry'; binding.pry
+
         expect(response).to have_http_status(:bad_request)
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response).to have_key(:error)
