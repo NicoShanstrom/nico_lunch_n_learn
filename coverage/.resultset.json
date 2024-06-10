@@ -176,7 +176,7 @@
       },
       "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/config/initializers/load_countries.rb": {
         "lines": [
-          1
+          null
         ]
       },
       "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/config/routes.rb": {
@@ -1049,6 +1049,6 @@
         ]
       }
     },
-    "timestamp": 1718041264
+    "timestamp": 1718041423
   }
 }
