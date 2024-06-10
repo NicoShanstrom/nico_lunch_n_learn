@@ -9,7 +9,7 @@ RSpec.describe 'TouristSites API', type: :request do
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response).to be_a(Hash)
         expect(json_response[:data]).to be_an(Array)
-        expect(json_response[:data].size).to eq(10) # Adjust this according to the expected result size
+        expect(json_response[:data].size).to eq(10)
 
         tourist_site = json_response[:data].first
         expect(tourist_site).to have_key(:id)

@@ -1,24 +1,16 @@
 class PlacesService
 
-  def self.points_of_interest(country_name, city_name)
-    coordinates = geocode_city(country_name, city_name)
-    return unless coordinates
+  def self.tourist_sites(country_name)
+    coordinates = geocode_country(country_name)
+    return [] unless coordinates
     
     # url = '/v1/geocode/search'
     url = '/v2/places'
     params = {
-      categories: categories,
-      conditions: conditions,
-      filter: "circle:#{coordinates[:lon]},#{coordinates[:lat]},5000", # 5 km radius
-      bias: "proximity:#{coordinates[:lon]},#{coordinates[:lat]}",
-      limit: limit,
-      apiKey: Rails.application.credentials.GEOAPIFY[:API_KEY]
-      # text: "#{country_name}, #{city_name}",
-      # format: 'json',
-      # type: 'amenity',
-      # bias: "proximity:#{coordinates[:lon]},#{coordinates[:lat]}",
-      # limit: 10 
-  }.compact
+      categories: tourism,
+      filter: "circle:#{coordinates[:lon]},#{coordinates[:lat]},50000", # 50 km radius
+      limit: 10
+    }
 
     response = call_api(url, params)
     parse_response(response)
@@ -26,14 +18,14 @@ class PlacesService
 
   private
 
-  def self.geocode_city(country_name, city_name)
-    endpoint = '/v1/geocode/search'
+  def self.geocode_country(country_name)
+    url = '/v1/geocode/search'
     params = {
-      text: "#{city_name}, #{country_name}",
+      text: country_name,
       format: 'json'
     }
 
-    response = call_api(endpoint, params)
+    response = call_api(url, params)
     coordinates = response[:features]&.first&.dig(:geometry, :coordinates)
     return { lat: coordinates[1], lon: coordinates[0] } if coordinates
 
@@ -44,8 +36,6 @@ class PlacesService
     response = connection.get do |request|
       request.params = params
       request.params[:apiKey] = Rails.application.credentials.GEOAPIFY[:API_KEY]
-      # req.headers['Content-Type'] = 'application/json'
-      # req.headers['Accept-Language'] = 'en'
     end
 
     JSON.parse(response.body, symbolize_names: true)
@@ -56,6 +46,18 @@ class PlacesService
   end
 
   def self.parse_response(response)
-    response[:features]
+    {
+      data: response[:features].map do |site|
+        {
+          id: nil,
+          type: 'tourist_site',
+          attributes: {
+            name: site[:properties][:name],
+            address: site[:properties][:formatted],
+            place_id: site[:properties][:place_id]
+          }
+        }
+      end
+    }
   end
 end
