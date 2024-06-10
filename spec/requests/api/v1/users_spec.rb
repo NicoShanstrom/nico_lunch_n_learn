@@ -19,6 +19,7 @@ RSpec.describe "Users API", type: :request do
         expect(response).to have_http_status(:created)
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response[:data]).to have_key(:id)
+        expect(json_response[:data][:type]).to eq("user")
         expect(json_response[:data][:attributes]).to include(
           name: "Odell",
           email: "badboy@ruffruff.com",
