@@ -2,11 +2,17 @@ require 'rails_helper'
 
 RSpec.describe "Favorite request", type: :request do
   describe "POST /api/v1/favorites" do
+    let(:user) { 
+      User.create(
+        name: "Nico", email: "test@example.com", 
+        password: "password", password_confirmation: "password"
+      ) 
+    }
     describe "successful login request" do
       it "creates a favorite recipe for a user" do
         post "/api/v1/favorites", 
           params: {
-            api_key: "40357492dbae60bf76ca991321816ee62d46d921c5b89af1",
+            api_key: user.api_key,
             country: "thailand",
             recipe_link: "http://www.edamam.com/ontologies/edamam.owl#recipe_889856aa0bd54dd1bb5a09d29546e60a",
             recipe_title: "YumYum"
@@ -17,7 +23,6 @@ RSpec.describe "Favorite request", type: :request do
           }
         expect(response).to have_http_status(:created)
         json_response = JSON.parse(response.body, symbolize_names: true)
-          # require 'pry'; binding.pry
         expect(json_response).to have_key(:success)
         expect(json_response[:success]).to eq("Favorite added successfully")
       end
@@ -27,7 +32,7 @@ RSpec.describe "Favorite request", type: :request do
       it "returns an error when API key is invalid" do
         post "/api/v1/favorites", 
           params: {
-            api_key: invalidapikey,
+            api_key: "invalidapikey",
             country: "Nigeria",
             recipe_link: "http://www.edamam.com/ontologies/edamam.owl#recipe_889856aa0bd54dd1bb5a09d29546e60a",
             recipe_title: "DoDo, Nigerian plantains"

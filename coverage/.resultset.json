@@ -213,11 +213,61 @@
           null
         ]
       },
-      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/controllers/api/v1/favorites_controller.rb": {
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/models/user.rb": {
         "lines": [
           1,
           1,
           null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/controllers/api/v1/favorites_controller.rb": {
+        "lines": [
+          1,
+          1,
+          2,
+          null,
+          2,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
           null,
           null
         ]
@@ -238,15 +288,8 @@
           1,
           null
         ]
-      },
-      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/models/application_record.rb": {
-        "lines": [
-          1,
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1718049373
+    "timestamp": 1718050224
   }
 }
