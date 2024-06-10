@@ -23,4 +23,15 @@ RSpec.describe RestCountriesService, type: :service do
       end
     end
   end
+
+  describe '.all_countries' do
+    it 'returns a list of all country names' do
+      VCR.use_cassette("all_countries") do
+        response = RestCountriesService.all_countries
+        expect(response).to be_an(Array)
+        expect(response).not_to be_empty
+        expect(response.first).to be_a(String)
+      end
+    end
+  end
 end
