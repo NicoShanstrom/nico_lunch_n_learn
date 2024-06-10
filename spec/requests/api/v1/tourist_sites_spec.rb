@@ -8,7 +8,6 @@ RSpec.describe 'TouristSites API', type: :request do
         expect(response).to have_http_status(:success)
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response).to be_a(Hash)
-        # require 'pry'; binding.pry
         expect(json_response[:data]).to be_an(Array)
         expect(json_response[:data].size).to eq(10)
 
@@ -19,6 +18,17 @@ RSpec.describe 'TouristSites API', type: :request do
         expect(tourist_site[:attributes]).to have_key(:name)
         expect(tourist_site[:attributes]).to have_key(:address)
         expect(tourist_site[:attributes]).to have_key(:place_id)
+      end
+    end
+
+    describe 'without a country parameter' do
+      it 'returns an error' do
+        get '/api/v1/tourist_sites'
+        # require 'pry'; binding.pry
+        expect(response).to have_http_status(:bad_request)
+        json_response = JSON.parse(response.body, symbolize_names: true)
+        expect(json_response).to have_key(:error)
+        expect(json_response[:error]).to eq('Country parameter is required for search')
       end
     end
   end
