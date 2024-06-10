@@ -8,8 +8,7 @@ class EdamamService
     }
 
     response = call_api(url, params)
-    # parse_response(response)
-    response
+    parse_response(response, country_name)
     # require 'pry'; binding.pry
   end
 
@@ -32,4 +31,14 @@ class EdamamService
     Faraday.new('https://api.edamam.com')
   end
 
+  def self.parse_response(response, country_name)
+    response[:hits].map do |hit|
+      Recipe.new(
+        title: hit[:recipe][:label],
+        url: hit[:recipe][:url],
+        country: country_name,
+        image: hit[:recipe][:image]
+      )
+    end
+  end
 end

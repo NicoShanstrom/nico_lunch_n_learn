@@ -8,3 +8,4 @@ class Recipe
     @image = image
   end
 end
+
