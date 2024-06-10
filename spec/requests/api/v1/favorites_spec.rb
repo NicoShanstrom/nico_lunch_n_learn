@@ -43,7 +43,6 @@ RSpec.describe "Favorite request", type: :request do
           }
         expect(response).to have_http_status(:bad_request)
         json_response = JSON.parse(response.body, symbolize_names: true)
-          # require 'pry'; binding.pry
         expect(json_response[:error]).to eq("Invalid API key")
       end
     end
