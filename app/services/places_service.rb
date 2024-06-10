@@ -12,13 +12,12 @@ class PlacesService
     }
 
     response = call_api(url, params)
-    # parse_response(response)
     response[:features].map do |tourist_site|
-      {
+      TouristSite.new(
         name: tourist_site[:properties][:name],
         address: tourist_site[:properties][:formatted],
         place_id: tourist_site[:properties][:place_id]
-      }
+      )
     end
   end
 
@@ -50,20 +49,4 @@ class PlacesService
   def self.connection
     Faraday.new('https://api.geoapify.com')
   end
-
-  # def self.parse_response(response)
-  #   {
-  #     data: response[:features].map do |tourist_site|
-  #       {
-  #         id: nil,
-  #         type: 'tourist_site',
-  #         attributes: {
-  #           name: tourist_site[:properties][:name],
-  #           address: tourist_site[:properties][:formatted],
-  #           place_id: tourist_site[:properties][:place_id]
-  #         }
-  #       }
-  #     end
-  #   }
-  # end
 end
