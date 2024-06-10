@@ -4,7 +4,7 @@ RSpec.describe 'TouristSites API', type: :request do
   describe 'GET /api/v1/tourist_sites', :vcr do
     describe 'with a valid country parameter' do
       it 'returns tourist sites' do
-        get '/api/v1/tourist_sites', params: { country_name: 'France' }
+        get '/api/v1/tourist_sites', params: { country: 'France' }
         expect(response).to have_http_status(:success)
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response).to be_a(Hash)

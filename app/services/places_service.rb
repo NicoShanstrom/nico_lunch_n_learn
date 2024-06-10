@@ -1,7 +1,7 @@
 class PlacesService
 
-  def self.tourist_sites(country_name)
-    coordinates = geocode_country(country_name)
+  def self.tourist_sites(country)
+    coordinates = geocode_country(country)
     return [] unless coordinates
     
     search_tourist_sites(coordinates)
@@ -9,10 +9,10 @@ class PlacesService
 
   private
 
-  def self.geocode_country(country_name)
+  def self.geocode_country(country)
     url = '/v1/geocode/search'
     params = {
-      text: country_name,
+      text: country,
       format: 'json'
     }
 
