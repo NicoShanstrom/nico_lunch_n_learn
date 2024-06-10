@@ -7,8 +7,8 @@ class PlacesService
     # url = '/v1/geocode/search'
     url = '/v2/places'
     params = {
-      categories: tourism,
-      filter: "circle:#{coordinates[:lon]},#{coordinates[:lat]},50000", # 50 km radius
+      categories: "tourism",
+      filter: "circle:#{coordinates[:lon]},#{coordinates[:lat]},50000",
       limit: 10
     }
 
@@ -33,7 +33,7 @@ class PlacesService
   end
 
   def self.call_api(url, params = {})
-    response = connection.get do |request|
+    response = connection.get(url) do |request|
       request.params = params
       request.params[:apiKey] = Rails.application.credentials.GEOAPIFY[:API_KEY]
     end
