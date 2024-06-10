@@ -1,6 +1,6 @@
 class Api::V1::TouristSitesController < ApplicationController
   def index
-    country_name = params[:county_name]
+    country_name = params[:country_name]
     if country_name.present?
       tourist_sites = PlacesService.tourist_sites(country_name)
       render json: tourist_sites
