@@ -1,4 +1,5 @@
 class Api::V1::TouristSitesController < ApplicationController
+  
   def index
     country = params[:country]
     if country.present?
