@@ -7,6 +7,20 @@ RSpec.describe "Favorite request", type: :request do
       password: "password", password_confirmation: "password"
     ) 
   }
+
+  before do
+    user.favorites.create(
+      country: "thailand",
+      recipe_link: "http://www.edamam.com/ontologies/edamam.owl#recipe_889856aa0bd54dd1bb5a09d29546e60a",
+      recipe_title: "YumYum"
+    )
+    user.favorites.create(
+      country: "egypt",
+      recipe_link: "http://www.thekitchn.com/recipe-egyptian-tomato-soup-weeknight....",
+      recipe_title: "Recipe: Egyptian Tomato Soup"
+    )
+  end
+  
   describe "POST /api/v1/favorites" do
     describe "successful post favorite request" do
       it "creates a favorite recipe for a user" do
