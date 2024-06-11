@@ -13,9 +13,9 @@ RSpec.describe "Login request", type: :request do
             "Content-Type" => "application/json",
             "Accept" => "application/json"
           }
-          expect(response).to have_http_status(:success)
-          json_response = JSON.parse(response.body, symbolize_names: true)
-          # require 'pry'; binding.pry
+        expect(response).to have_http_status(:success)
+        json_response = JSON.parse(response.body, symbolize_names: true)
+        # require 'pry'; binding.pry
         expect(json_response[:data]).to have_key(:id)
         expect(json_response[:data][:type]).to eq("user")
         expect(json_response[:data][:attributes]).to include(

@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "Favorite request", type: :request do
+  let(:user) { 
+    User.create(
+      name: "Nico", email: "test@example.com", 
+      password: "password", password_confirmation: "password"
+    ) 
+  }
   describe "POST /api/v1/favorites" do
-    let(:user) { 
-      User.create(
-        name: "Nico", email: "test@example.com", 
-        password: "password", password_confirmation: "password"
-      ) 
-    }
-    describe "successful login request" do
+    describe "successful post favorite request" do
       it "creates a favorite recipe for a user" do
         post "/api/v1/favorites", 
           params: {
@@ -44,6 +44,34 @@ RSpec.describe "Favorite request", type: :request do
         expect(response).to have_http_status(:bad_request)
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response[:error]).to eq("Invalid API key")
+      end
+    end
+  end
+
+  describe "GET /api/v1/favorites" do
+    describe "successful get request for a user's favorites" do
+      it "returns a users favorite recipes" do
+        get "/api/v1/favorites?api_key=#{user.api_key}"
+          headers: {
+            "Content-Type" => "application/json",
+            "Accept" => "application/json"
+          }
+
+        expect(response).to have_http_status(:success)
+        json_response = JSON.parse(response.body, symbolize_names: true)
+        expect(json_response).to be_a(Hash)
+        expect(json_response[:data]).to be_an(Array)
+        expect(json_response[:data]).to have_key(:id)
+        expect(json_response[:data]).to have_key(:type)
+        expect(json_response[:data][:type]).to be_a(String)
+
+        expect(json_response[:data]).to have_key(:attributes)
+        expect(json_response[:data][:attributes]).to be_a(Hash)
+        expect(json_response[:data][:attributes]).to have_key(:recipe_title)
+        expect(json_response[:data][:attributes]).to have_key(:recipe_link)
+        expect(json_response[:data][:attributes]).to have_key(:country)
+        expect(json_response[:data][:attributes][:country]).to be_a(String)
+        expect(json_response[:data][:attributes]).to have_key(:created_at)
       end
     end
   end
