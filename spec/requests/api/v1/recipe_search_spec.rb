@@ -28,7 +28,7 @@ RSpec.describe "Recipes API", type: :request do
 
     describe "when country parameter is not provided" do
       it 'returns recipes for a random country', :vcr do
-        allow(RestCountriesService).to receive(:random_country).and_return('India')
+        expect(RestCountriesService).to receive(:random_country).and_return('India')
         get "/api/v1/recipes"
 
         expect(response).to have_http_status(:success)

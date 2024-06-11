@@ -11,7 +11,6 @@ class RestCountriesService
   def self.random_country
     # COUNTRIES.sample
     countries = all_countries
-    # require 'pry'; binding.pry
     countries.sample
   end
   
