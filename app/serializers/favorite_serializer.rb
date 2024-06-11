@@ -1,7 +1,7 @@
 class FavoriteSerializer
   include JSONAPI::Serializer
-  set_id :null
+
   set_type :favorite
   
-  attributes :country, :recipe_link, :recipe_title, :user_id
+  attributes :recipe_title, :recipe_link, :country, :created_at
 end
