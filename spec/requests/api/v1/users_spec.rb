@@ -7,7 +7,7 @@ RSpec.describe "Users API", type: :request do
         post "/api/v1/users",
           params: {
             name: "Odell",
-            email: "badboy@ruffruff.com",
+            email: "good@ruffruff.com",
             password: "treats4lyf",
             password_confirmation: "treats4lyf"
           }.to_json,
@@ -15,14 +15,14 @@ RSpec.describe "Users API", type: :request do
             "Content-Type" => "application/json",
             "Accept" => "application/json"
           }
-          # require 'pry'; binding.pry
+
         expect(response).to have_http_status(:created)
         json_response = JSON.parse(response.body, symbolize_names: true)
         expect(json_response[:data]).to have_key(:id)
         expect(json_response[:data][:type]).to eq("user")
         expect(json_response[:data][:attributes]).to include(
           name: "Odell",
-          email: "badboy@ruffruff.com",
+          email: "good@ruffruff.com",
           api_key: anything #RSpec matcher to specify that a particular key in a hash should exist and its value can be anything
         )
       end
