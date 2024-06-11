@@ -206,6 +206,7 @@
           1,
           1,
           1,
+          1,
           null,
           null,
           null,
@@ -528,6 +529,45 @@
           null
         ]
       },
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/spec/requests/api/v1/tourist_sites_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/spec/requests/api/v1/users_spec.rb": {
         "lines": [
           1,
@@ -680,6 +720,95 @@
           null,
           null,
           null,
+          null,
+          null
+        ]
+      },
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/spec/services/api/v1/places_service_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          10,
+          10,
+          10,
+          10,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/services/places_service.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          2,
+          null,
+          2,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          2,
+          null,
+          null,
+          null,
+          2,
+          2,
+          2,
+          null,
+          null,
+          null,
+          null,
+          1,
+          2,
+          null,
+          2,
+          null,
+          null,
+          null,
+          null,
+          2,
+          2,
+          20,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          4,
+          4,
+          4,
+          null,
+          null,
+          4,
+          null,
+          null,
+          1,
+          4,
           null,
           null
         ]
@@ -1010,6 +1139,47 @@
           null
         ]
       },
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/controllers/api/v1/tourist_sites_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          2,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/poros/tourist_site.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          20,
+          20,
+          20,
+          null,
+          null
+        ]
+      },
+      "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/serializers/tourist_site_serializer.rb": {
+        "lines": [
+          null,
+          1,
+          1,
+          null,
+          11,
+          1,
+          1,
+          null
+        ]
+      },
       "/Users/nicoshanstrom/Turing/3mod/final_solo_project/nico_lunch_n_learn/app/controllers/api/v1/users_controller.rb": {
         "lines": [
           1,
@@ -1033,6 +1203,6 @@
         ]
       }
     },
-    "timestamp": 1718053065
+    "timestamp": 1718065528
   }
 }

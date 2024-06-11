@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :favorites, only: [:create]
       resources :users, only: [:create]
       resources :sessions, only: [:create]
+      resources :tourist_sites, only: [:index]
     end
   end
 end
