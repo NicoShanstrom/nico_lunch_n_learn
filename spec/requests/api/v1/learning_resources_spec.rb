@@ -57,6 +57,16 @@ RSpec.describe "Learning Resources API", type: :request do
           expect(attributes).to have_key(:images)
           expect(attributes[:images]).to eq([])
       end
+
+      describe "when no country parameter is provided" do
+        it 'returns an error', :vcr do
+          get "/api/v1/learning_resources", headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+
+          expect(response).to have_http_status(:bad_request)
+          json_response = JSON.parse(response.body, symbolize_names: true)
+          expect(json_response).to have_key(:error)
+        end
+      end
     end
   end
 end
