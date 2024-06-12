@@ -17,20 +17,7 @@ RSpec.describe User, type: :model do
       user = User.new(name: "Paschi Dog", email: "getdatgroundhog@chase.com", password: "justletmechaseit", password_confirmation: "justletmechaseit")
       expect(user.api_key).to be_nil
       user.save
-      # puts user.errors.full_messages
-      # require 'pry'; binding.pry
       expect(user.api_key).to be_present
-    end
-
-    it 'ensures api_key is unique' do
-      user1 = User.create(name: "Paschi Dog", email: "getdatgroundhog@chase.com", password: "justletmechaseit", password_confirmation: "justletmechaseit")
-      user2 = User.new(name: "Wolf", email: "wildone@toddlers.com", password: "momma", password_confirmation: "momma")
-      expect(user1.api_key).to be_present
-      expect(user2.api_key).to be_nil
-      user2.save
-      # puts user.errors.full_messages
-      expect(user2.api_key).to be_present
-      expect(user1.api_key).not_to eq(user2.api_key)
     end
 
     it 'creates a unique api_key' do

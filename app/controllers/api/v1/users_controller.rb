@@ -5,7 +5,6 @@ class Api::V1::UsersController < ApplicationController
     if user.save 
       render json: UserSerializer.new(user).serializable_hash, status: :created
     else
-      # require 'pry'; binding.pry
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
   end

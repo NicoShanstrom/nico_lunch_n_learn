@@ -9,7 +9,6 @@ class EdamamService
 
     response = call_api(url, params)
     parse_response(response, country_name)
-    # require 'pry'; binding.pry
   end
 
   private
@@ -21,7 +20,6 @@ class EdamamService
       request.params[:app_key] = Rails.application.credentials.EDAMAM[:APP_KEY]
       request.headers['Content-Type'] = 'application/json'
       request.headers['Accept-Language'] = 'en'
-      # require 'pry'; binding.pry
     end
 
     JSON.parse(response.body, symbolize_names: true)
