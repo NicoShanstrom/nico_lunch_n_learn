@@ -23,12 +23,14 @@ RSpec.describe "Learning Resources API", type: :request do
         video = attributes[:video]
         expect(video).to have_key(:title)
         expect(video).to have_key(:youtube_video_id)
+        expect(video).to_not have_key(:thumbmnails)
 
         images = attributes[:images]
         expect(images).to be_an(Array)
         images.each do |image|
           expect(image).to have_key(:alt_tag)
           expect(image).to have_key(:url)
+          expect(image).to_not have_key(:likes)
         end
       end
     end

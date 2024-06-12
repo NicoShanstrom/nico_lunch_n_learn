@@ -2,12 +2,20 @@ require 'rails_helper'
 
 RSpec.describe "Login request", type: :request do
   describe "POST /api/v1/sessions" do
+    let!(:user) { 
+      User.create(
+        name: "Wolf", 
+        email: "wolfboy@toddlers.com", 
+        password: "ball", 
+        password_confirmation: "ball"
+      ) 
+    }
     describe "successful login request" do
       it "logs a user in" do
         post "/api/v1/sessions", 
           params: {
-            email: "goodboy@ruffruff.com",
-            password: "treats4lyf"
+            email: user.email,
+            password: user.password
           }.to_json,
           headers: {
             "Content-Type" => "application/json",
@@ -15,13 +23,13 @@ RSpec.describe "Login request", type: :request do
           }
         expect(response).to have_http_status(:success)
         json_response = JSON.parse(response.body, symbolize_names: true)
-        # require 'pry'; binding.pry
+
         expect(json_response[:data]).to have_key(:id)
         expect(json_response[:data][:type]).to eq("user")
         expect(json_response[:data][:attributes]).to include(
-          name: "Odell",
-          email: "goodboy@ruffruff.com",
-          api_key: anything
+          name: user.name,
+          email: user.email,
+          api_key: user.api_key
         )
       end
     end

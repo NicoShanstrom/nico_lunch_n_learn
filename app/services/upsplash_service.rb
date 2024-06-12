@@ -5,8 +5,8 @@ class UpsplashService
     params = { query: country_name }
     response = call_api(url, params)
     parse_response(response)
-    # require 'pry'; binding.pry
   end
+
   private
 
   def self.call_api(url, params = {})
@@ -14,7 +14,6 @@ class UpsplashService
       request.params = params
       request.params[:client_id] = Rails.application.credentials.UPSPLASH[:ACCESS_KEY]
       request.headers['Accept-Version'] = 'v1'
-      # require 'pry'; binding.pry
     end
     JSON.parse(response.body, symbolize_names: true)
   end

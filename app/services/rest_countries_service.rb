@@ -1,20 +1,21 @@
 class RestCountriesService
   
-  def self.country_search(country_name)
-    url = "/v3.1/name/#{country_name}"
-
-    response = call_api(url)
-    response.first[:name][:common]
-    # parse_response(response)
-  end
-  
   def self.random_country
-    # COUNTRIES.sample
-    countries = all_countries
-    countries.sample
+    begin
+      countries = all_countries
+      countries.sample.name
+    rescue Faraday::ConnectionFailed, Faraday::TimeoutError
+      COUNTRIES.sample
+    end
   end
   
   private
+
+  def self.all_countries
+    url = "/v3.1/all"
+    response = call_api(url)
+    response.map { |country_data| Country.new(country_data) }
+  end
 
   def self.call_api(url)
     response = connection.get(url)
@@ -25,9 +26,4 @@ class RestCountriesService
     Faraday.new('https://restcountries.com')
   end
 
-  def self.all_countries
-    url = "/v3.1/all"
-    response = call_api(url)
-    response.map { |country| country[:name][:common] }
-  end
 end

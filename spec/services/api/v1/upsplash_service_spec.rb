@@ -6,8 +6,9 @@ RSpec.describe UpsplashService, type: :service do
     context 'when a valid country name is provided' do
       it 'returns a list of images' do
         response = UpsplashService.photo_search('laos')
-        # require 'pry'; binding.pry
+        
         expect(response).to be_an(Array)
+
         response.each do |image|
           expect(image).to have_key(:alt_tag)
           expect(image).to have_key(:url)

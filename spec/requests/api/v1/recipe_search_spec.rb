@@ -8,10 +8,10 @@ RSpec.describe "Recipes API", type: :request do
         get "/api/v1/recipes?country=#{country_name}"
 
         expect(response).to have_http_status(:success)
-        # require 'pry'; binding.pry
         json_response = JSON.parse(response.body, symbolize_names: true)
-        expect(json_response).to have_key(:data)
+
         expect(json_response[:data]).to be_an(Array)
+        expect(json_response[:data].first[:attributes][:country]).to eq("thailand")
 
         recipe = json_response[:data].first
         expect(recipe[:id]).to be_nil
@@ -32,9 +32,8 @@ RSpec.describe "Recipes API", type: :request do
         get "/api/v1/recipes"
 
         expect(response).to have_http_status(:success)
-
         json_response = JSON.parse(response.body, symbolize_names: true)
-        expect(json_response).to have_key(:data)
+        
         expect(json_response[:data]).to be_an(Array)
         recipe = json_response[:data].first
         
@@ -53,8 +52,8 @@ RSpec.describe "Recipes API", type: :request do
         get "/api/v1/recipes?country=#{country_name}"
 
         expect(response).to have_http_status(:success)
-
         json_response = JSON.parse(response.body, symbolize_names: true)
+
         expect(json_response[:data]).to eq([])
       end
     end

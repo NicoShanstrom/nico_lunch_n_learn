@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :favorites, dependent: :destroy
-  
+
   before_validation :create_unique_api_key, on: :create
 
   validates :name, presence: true
@@ -17,6 +17,5 @@ class User < ApplicationRecord
       self.api_key = SecureRandom.hex(24)
       break unless self.class.exists?(api_key: api_key)
     end
-    # require 'pry'; binding.pry
   end
 end
