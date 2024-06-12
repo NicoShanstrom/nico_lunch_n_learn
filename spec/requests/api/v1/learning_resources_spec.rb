@@ -33,15 +33,29 @@ RSpec.describe "Learning Resources API", type: :request do
           expect(image).to_not have_key(:likes)
         end
       end
-    end
 
-    describe "when no country parameter is provided" do
-      it 'returns an error', :vcr do
-        get "/api/v1/learning_resources", headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+      it 'returns an empty video hash and empty image array when no content is found for country' do
+          get "/api/v1/learning_resources?country=nocountryforoldmen", headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
 
-        expect(response).to have_http_status(:bad_request)
-        json_response = JSON.parse(response.body, symbolize_names: true)
-        expect(json_response).to have_key(:error)
+          expect(response).to have_http_status(:success)
+
+          json_response = JSON.parse(response.body, symbolize_names: true)
+          expect(json_response).to have_key(:data)
+
+          data = json_response[:data]
+          expect(data).to have_key(:id)
+          expect(data[:id]).to be_nil
+          expect(data).to have_key(:type)
+          expect(data[:type]).to eq("learning_resource")
+          expect(data).to have_key(:attributes)
+
+          attributes = data[:attributes]
+          expect(attributes).to have_key(:country)
+          expect(attributes[:country]).to eq("nocountryforoldmen")
+          expect(attributes).to have_key(:video)
+          expect(attributes[:video]).to eq({})
+          expect(attributes).to have_key(:images)
+          expect(attributes[:images]).to eq([])
       end
     end
   end
